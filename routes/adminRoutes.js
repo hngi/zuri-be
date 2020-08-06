@@ -1,10 +1,7 @@
-const express = require('express');
+const express = require("express");
 
-const {
-  login,
-  traininglogin,
-  logout
-} = require('../controller/adminController');
+const { login, traininglogin, logout } = require("../controller/adminController");
+const { topAnalytics } = require("../controller/analytics");
 
 const router = express.Router();
 
@@ -14,4 +11,5 @@ router.post('/traininglogin', traininglogin);
 router.get('/logout', logout);
 // router.post('/admin/create', newAdminValidationRules(), createAdmin);
 
+router.get("/analytics/toplevel", topAnalytics);
 module.exports = router;
