@@ -13,11 +13,6 @@ const contactUsSchema = Schema({
     required: true,
     unique: true
   },
-
-  subject: {
-    type: String
-  },
-
   message: {
     type: String,
     required: true
