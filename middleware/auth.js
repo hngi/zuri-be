@@ -1,14 +1,28 @@
-module.exports = (req, res, next) => {
+const jwt = require('jsonwebtoken');
+const { JWTKey } = require('../config');
+const Admin = require('../models/Admin');
+const { responseHandler } = require('../utils/responseHandler');
+
+const authourizeSuperadmin = async (req, res, next) => {
   try {
-    if (!req.session.auth) {
-      req.flash('error', 'Login to continue');
-      res.redirect('/login');
-    } else {
-      next();
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      responseHandler(res, 'unauthorized access', 400);
     }
-  } catch (e) {
-    res.status(401).json({
-      error: new Error('Invalid request!')
-    });
+
+    const decodeData = await jwt.verify(token, JWTKey);
+
+    const isSuperadmin = await Admin.findById({ _id: decodeData.adminId });
+    if (!isSuperadmin) return responseHandler(res, 'unauthorized access');
+    if (isSuperadmin.role !== 'superAdmin') {
+      responseHandler(res, 'unauthorized access', 400);
+    }
+    return next();
+  } catch (error) {
+    responseHandler(res, 'An error occured', 500);
   }
+};
+
+module.exports = {
+  authourizeSuperadmin
 };

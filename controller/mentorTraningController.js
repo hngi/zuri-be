@@ -1,15 +1,30 @@
-const { validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 const ZuriTrainingMentor = require('../models/ZuriTrainingMentorModel');
 const { responseHandler } = require('../utils/responseHandler');
+
+const mentorTraningValidator = () => [
+  body('firstName').isString().not().isEmpty(),
+  body('lastName').isString().not().isEmpty(),
+  body('email').isEmail().not().isEmpty(),
+  body('country').isString().not().isEmpty(),
+  body('track').isString().not().isEmpty(),
+  body('employmentStatus').isString().not().isEmpty(),
+  body('gender').isString().not().isEmpty(),
+  body('dob').isString().not().isEmpty(),
+  body('stateOfResidence').isString().not().isEmpty(),
+  body('cvLink').optional().isURL(),
+  body('intrest').isString().not().isEmpty(),
+  body('phoneNumber').isMobilePhone().not().isEmpty()
+];
 
 module.exports = {
   createApplication: async (req, res) => {
     try {
-      const errors = await validationResult(req);
-
+      const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        responseHandler(res, { errors: errors.array() });
-        return;
+        const err = errors.array();
+        const message = `${err[0].msg} in ${err[0].param}`;
+        return responseHandler(res, message, 400);
       }
       const {
         firstName,
@@ -101,5 +116,7 @@ module.exports = {
         error: err
       });
     }
-  }
+  },
+
+  mentorTraningValidator,
 };

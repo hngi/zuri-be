@@ -25,8 +25,23 @@ exports.InternObject = {
     required: [true, 'is required']
   },
 
+  address: {
+    type: String,
+    required: false
+  },
+
+  city: {
+    type: String,
+    required: [true, 'is required']
+  },
+
   state: {
     type: String,
+    required: true
+  },
+
+  zipcode: {
+    type: Number,
     required: true
   },
 

@@ -1,6 +1,9 @@
 const express = require('express');
+const { authourizeSuperadmin } = require('../middleware/auth');
 
-const { login, logout } = require('../controller/adminController');
+const {
+  login, logout, getAdmin, getAllAdmin, addAdmin, deleteAdmin, adminValidator
+} = require('../controller/adminController');
 const {
   topAnalytics,
   internMentorTrackStats,
@@ -12,7 +15,8 @@ const router = express.Router();
 // Admin routes
 router.post('/auth', login);
 router.get('/logout', logout);
-// router.post('/admin/create', newAdminValidationRules(), createAdmin);
+router.post('/superadmin/create/admin', [adminValidator(), authourizeSuperadmin], addAdmin);
+router.delete('/superadmin/delete/:adminId', authourizeSuperadmin, deleteAdmin);
 
 router.get('/analytics/toplevel', topAnalytics);
 
@@ -24,5 +28,7 @@ router.get(
   '/analytics/lowerlevel/intern-mentor-tracks',
   internMentorTrackStats
 );
+router.get('/admin/:id', getAdmin);
+router.get('/superadmin/all/admins', authourizeSuperadmin, getAllAdmin);
 
 module.exports = router;

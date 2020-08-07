@@ -14,12 +14,18 @@ const internApplicationValidationRules = () => [
   body('employmentStatus').isString().not().isEmpty(),
   body('gender').isString().not().isEmpty(),
   body('dob').isString().not().isEmpty(),
-  body('phoneNumber').isLength({ min: 10 }).not().isEmpty()
+  body('phoneNumber').isLength({ min: 10 }).not().isEmpty(),
+  body('city').isString().not().isEmpty(),
+  body('zipcode').isString().not().isEmpty(),
+  body('address').isString().not().isEmpty()
 
 ];
 const createIntern = async (req, res) => {
   const {
-    firstName, lastName, email, country, state, track, employmentStatus, gender, dob, phoneNumber
+    firstName, lastName, email, country, state, track, employmentStatus, gender, dob,
+    phoneNumber, city,
+    zipcode,
+    address
   } = req.body;
 
   try {
@@ -47,6 +53,9 @@ const createIntern = async (req, res) => {
       lastName,
       email,
       country,
+      city,
+      zipcode,
+      address,
       state,
       track,
       employmentStatus,
@@ -58,7 +67,7 @@ const createIntern = async (req, res) => {
     if (!recordSave) {
       return responseHandler(res, 'Unable to register application', 401, false);
     }
-    return responseHandler(res, 'Application Successfully Registered', 200, true);
+    return responseHandler(res, 'Application Successfully Registered', 200, true, recordSave);
   } catch (error) {
     return responseHandler(res, 'Inputs error', 500, false, error.message);
   }

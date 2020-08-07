@@ -31,7 +31,6 @@ const internMentorApplicationStatusStatistics = (req, res, next) => {
         const pendingInterns = interns.filter(
           (intern) => intern.applicationState === 'pending'
         ).length;
-
         approved.interns = approvedInterns;
         pending.interns = pendingInterns;
         declined.interns = declinedInterns;
@@ -40,18 +39,18 @@ const internMentorApplicationStatusStatistics = (req, res, next) => {
         .then((mentors) => {
           if (mentors.length) {
             const approvedMentors = mentors.filter(
-              (mentor) => mentor.track === 'accepted'
+              (mentor) => mentor.applicationState === 'accepted'
             ).length;
             const declinedMentors = mentors.filter(
-              (mentor) => mentor.track === 'declined'
+              (mentor) => mentor.applicationState === 'declined'
             ).length;
             const pendingMentors = mentors.filter(
-              (mentor) => mentor.track === 'pending'
+              (mentor) => mentor.applicationState === 'pending'
             ).length;
-
+            
             approved.mentors = approvedMentors;
-            pending.mentors = declinedMentors;
-            declined.mentors = pendingMentors;
+            pending.mentors = pendingMentors;
+            declined.mentors = declinedMentors;
           }
         })
         .catch((err) => responseHandler(
