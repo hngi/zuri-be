@@ -49,52 +49,24 @@ const filterMentorTrainingData = (req, res) => {
 const getZuriTrainingCSV = async (req, res) => {
   const fields = [
     {
-      label: 'FIRST NAME',
-      value: 'firstName'
-    },
-    {
-      label: 'LAST NAME',
-      value: 'lastName'
+      label: 'FULL NAME',
+      value: 'fullName'
     },
     {
       label: 'INTERN EMAIL',
       value: 'email'
     },
     {
-      label: 'PHONE NUMBER',
-      value: 'phoneNumber'
-    },
-    {
-      label: 'DATE OF BIRTH',
-      value: 'dob'
-    },
-    {
-      label: 'COUNTRY',
-      value: 'country'
-    },
-    {
-      label: 'ADDRESS',
-      value: 'address'
-    },
-    {
-      label: 'CITY',
-      value: 'city'
-    },
-    {
-      label: 'STATE',
-      value: 'state'
-    },
-    {
-      label: 'ZIP CODE',
-      value: 'zipcode'
-    },
-    {
       label: 'TRACK',
       value: 'track'
     },
     {
-      label: 'EMPLOYEMENT STATUS',
-      value: 'employmentStatus'
+      label: 'Course',
+      value: 'course'
+    },
+    {
+      label: 'Level',
+      value: 'level'
     },
     {
       label: 'CREATED AT',
@@ -176,52 +148,24 @@ const filterInternTrainingDataCSV = (req, res) => {
   const filterBy = req.params.filterBy.toLowerCase();
   const fields = [
     {
-      label: 'FIRST NAME',
-      value: 'firstName'
-    },
-    {
-      label: 'LAST NAME',
-      value: 'lastName'
+      label: 'FULL NAME',
+      value: 'fullName'
     },
     {
       label: 'INTERN EMAIL',
       value: 'email'
     },
     {
-      label: 'PHONE NUMBER',
-      value: 'phoneNumber'
-    },
-    {
-      label: 'DATE OF BIRTH',
-      value: 'dob'
-    },
-    {
-      label: 'COUNTRY',
-      value: 'country'
-    },
-    {
-      label: 'ADDRESS',
-      value: 'address'
-    },
-    {
-      label: 'CITY',
-      value: 'city'
-    },
-    {
-      label: 'STATE',
-      value: 'state'
-    },
-    {
-      label: 'ZIP CODE',
-      value: 'zipcode'
-    },
-    {
       label: 'TRACK',
       value: 'track'
     },
     {
-      label: 'EMPLOYEMENT STATUS',
-      value: 'employmentStatus'
+      label: 'Course',
+      value: 'course'
+    },
+    {
+      label: 'Level',
+      value: 'level'
     },
     {
       label: 'CREATED AT',
