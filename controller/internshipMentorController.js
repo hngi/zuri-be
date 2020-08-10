@@ -4,13 +4,6 @@ const Mentor = require('../models/ZuriInternMentorModel');
 const { responseHandler } = require('../utils/responseHandler');
 
 // Application rules
-// const applicationValidationRules = () => [
-//   body('firstName').isString(),
-//   body('lastName').isString(),
-//   body('email').isEmail(),
-//   body('phoneNumber').isMobilePhone(),
-//   body('cvLink').optional().isURL()
-// ];
 const applicationValidationRules = () => [
   body('firstName').isString().not().isEmpty(),
   body('lastName').isString().not().isEmpty(),
