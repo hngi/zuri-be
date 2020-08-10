@@ -5,11 +5,17 @@ const { responseHandler } = require('../utils/responseHandler');
 
 // Application rules
 const applicationValidationRules = () => [
-  body('firstName').isString(),
-  body('lastName').isString(),
-  body('email').isEmail(),
-  body('phoneNumber').isMobilePhone(),
-  body('cvLink').optional().isURL()
+  body('firstName').isString().not().isEmpty(),
+  body('lastName').isString().not().isEmpty(),
+  body('email').isEmail().not().isEmpty(),
+  body('country').isString().not().isEmpty(),
+  body('track').isString().not().isEmpty(),
+  body('employmentStatus').isString().not().isEmpty(),
+  body('gender').isString().not().isEmpty(),
+  body('dob').isString().not().isEmpty(),
+  body('stateOfResidence').isString().not().isEmpty(),
+  body('cvLink').optional().isURL(),
+  body('phoneNumber').isMobilePhone().not().isEmpty()
 ];
 
 const internshipMentorApplication = async (req, res, next) => {
