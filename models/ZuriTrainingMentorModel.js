@@ -24,7 +24,7 @@ const zuriTrainingMentorSchema = Schema({
   },
   track: {
     type: String,
-    enum: ['frontend', 'mobile', 'backend', 'machine-learning', 'ui-ux'],
+    enum: ['frontend', 'mobile', 'backend', 'machine-learning', 'UI-UX'],
     required: true
   },
   gender: {
