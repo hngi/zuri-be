@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
-
 const { Schema } = mongoose;
 
 const zuriInternMentorSchema = Schema({
@@ -24,7 +23,7 @@ const zuriInternMentorSchema = Schema({
   },
   track: {
     type: String,
-    enum: ['frontend', 'mobile', 'design', 'backend', 'machine-learning', 'UI-UX'],
+    enum: ['frontend', 'mobile', 'backend', 'machine-learning', 'ui-ux'],
     required: true
   },
   gender: {

@@ -18,7 +18,7 @@ const applicationValidationRules = () => [
   body('phoneNumber').isMobilePhone().not().isEmpty()
 ];
 
-const internshipMentorApplication = async (req, res, next) => {
+const internshipMentorApplication = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const err = errors.array();
@@ -40,7 +40,7 @@ const internshipMentorApplication = async (req, res, next) => {
     // return the response on success
     return responseHandler(res, ' Application successful', 201, true, { mentor: newMentor });
   } catch (err) {
-    return next(err);
+    return responseHandler(res, err.message, 500, false);
   }
 };
 
