@@ -5,16 +5,19 @@ const Intern = require('../models/ZuriTrainingModel');
 const { responseHandler } = require('../utils/responseHandler');
 
 const internApplicationValidationRules = () => [
-  body('fullName').isString().not().isEmpty(),
+  body('firstName').isString().not().isEmpty(),
+  body('lastName').isString().not().isEmpty(),
+  body('phoneNumber').isMobilePhone().not().isEmpty(),
   body('email').isEmail().not().isEmpty(),
   body('track').isString().not().isEmpty(),
   body('course').isString().not().isEmpty(),
-  body('level').isString().not().isEmpty(),
-
+  body('level').isString().not().isEmpty()
 ];
 const createIntern = async (req, res) => {
   const {
-    fullName,
+    firstName,
+    lastName,
+    phoneNumber,
     email,
     track,
     course,
@@ -42,7 +45,9 @@ const createIntern = async (req, res) => {
       return responseHandler(res, 'Record already exist', 401, false);
     }
     const intern = new Intern({
-      fullName,
+      firstName,
+      lastName,
+      phoneNumber,
       email,
       track,
       course,
