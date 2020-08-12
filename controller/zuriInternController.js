@@ -1,8 +1,8 @@
-const { body, validationResult } = require("express-validator");
-const mongoose = require("mongoose");
-const ZuriIntern = require("../models/ZuriInternModel");
+const { body, validationResult } = require('express-validator');
+const mongoose = require('mongoose');
+const ZuriIntern = require('../models/ZuriInternModel');
 
-const { responseHandler } = require("../utils/responseHandler");
+const { responseHandler } = require('../utils/responseHandler');
 
 // Zuri Get all interns
 const getAllInterns = async (req, res) => {
@@ -18,9 +18,9 @@ const getAllInterns = async (req, res) => {
   }
   try {
     const zuriInterns = await ZuriIntern.find(searchValue);
-    return responseHandler(res, "Success", 200, true, zuriInterns);
+    return responseHandler(res, 'Success', 200, true, zuriInterns);
   } catch (err) {
-    return responseHandler(res, "An Error occured", 500, false, err);
+    return responseHandler(res, 'An Error occured', 500, false, err);
   }
 };
 
@@ -33,29 +33,29 @@ const filterInterns = async (req, res) => {
     };
   } else {
     filterValue = {
-      track: "",
+      track: '',
     };
   }
   try {
     const zuriInterns = await ZuriIntern.find(filterValue);
-    return responseHandler(res, "Success", 200, true, zuriInterns);
+    return responseHandler(res, 'Success', 200, true, zuriInterns);
   } catch (err) {
-    return responseHandler(res, "An Error occured", 500, false, err);
+    return responseHandler(res, 'An Error occured', 500, false, err);
   }
 };
 
 // Zuri Intern Validation rules
 const zuriInternValidationRules = () => [
-  body("firstName").isString().not().isEmpty(),
-  body("lastName").isString().not().isEmpty(),
-  body("email").isEmail().not().isEmpty(),
-  body("country").isString().not().isEmpty(),
-  body("state").isString().not().isEmpty(),
-  body("track").isString().not().isEmpty(),
-  body("employmentStatus").isString().not().isEmpty(),
-  body("gender").isString().not().isEmpty(),
-  body("dob").isString().not().isEmpty(),
-  body("phoneNumber").isMobilePhone().not().isEmpty(),
+  body('firstName').isString().not().isEmpty(),
+  body('lastName').isString().not().isEmpty(),
+  body('email').isEmail().not().isEmpty(),
+  body('country').isString().not().isEmpty(),
+  body('state').isString().not().isEmpty(),
+  body('track').isString().not().isEmpty(),
+  body('employmentStatus').isString().not().isEmpty(),
+  body('gender').isString().not().isEmpty(),
+  body('dob').isString().not().isEmpty(),
+  body('phoneNumber').isMobilePhone().not().isEmpty()
 ];
 
 // Zuri Intern Application
@@ -74,7 +74,7 @@ const zuriInternApplication = async (req, res, next) => {
     if (intern) {
       return responseHandler(
         res,
-        "Email address already used for application",
+        'Email address already used for application',
         400,
         true
       );
@@ -82,7 +82,7 @@ const zuriInternApplication = async (req, res, next) => {
     // create the new intern application
     let newIntern = new ZuriIntern(req.body);
     newIntern = await newIntern.save();
-    return responseHandler(res, " Application is successful", 201, true, {
+    return responseHandler(res, ' Application is successful', 201, true, {
       intern: newIntern,
     });
   } catch (err) {
