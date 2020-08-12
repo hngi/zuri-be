@@ -10,6 +10,7 @@ const { JWTKey } = require('../config');
 const { responseHandler } = require('../utils/responseHandler');
 const { passwordHash } = require('../utils/password-hash');
 const sendEmail = require('../utils/send-email');
+const config = require('../config.js');
 
 const adminValidator = () => [
   body('firstName').isString().not().isEmpty(),
@@ -102,7 +103,7 @@ const addAdmin = async (req, res) => {
       return responseHandler(res, 'Unable to create Admin', 401, false);
     }
     // send admin login details
-    const link = `${process.env.ZURI_DEV_URL}/login`;
+    const link = `${config.ZuriUrl}/login`;
     const details = {
       email,
       subject: 'ZURI Admin Account Details',

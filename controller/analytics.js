@@ -47,7 +47,7 @@ const internMentorApplicationStatusStatistics = (req, res, next) => {
             const pendingMentors = mentors.filter(
               (mentor) => mentor.applicationState === 'pending'
             ).length;
-            
+
             approved.mentors = approvedMentors;
             pending.mentors = pendingMentors;
             declined.mentors = declinedMentors;
