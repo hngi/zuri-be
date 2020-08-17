@@ -129,6 +129,25 @@ const acceptApplication = async (req, res, next) => {
   }
 };
 
+const declineApplication = async (req, res, next) => {
+  const mentorId = req.params.id;
+
+  if (!mongoose.isValidObjectId(mentorId)) {
+    return responseHandler(res, 'Invalid Id for mentor', 400, false);
+  }
+
+  try {
+    const mentor = await Mentor.findOne({ _id: mentorId });
+    if (!mentor) {
+      return responseHandler(res, 'Mentor not found', 404, false);
+    }
+
+    await mentor.update({ applicationState: 'declined' });
+    return responseHandler(res, 'Mentor application declined', 200, true);
+  } catch (err) {
+    return next(err);
+  }
+};
 module.exports = {
   applicationValidationRules,
   internshipMentorApplication,
