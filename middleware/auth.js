@@ -19,7 +19,7 @@ const authourizeSuperadmin = async (req, res, next) => {
     }
     return next();
   } catch (error) {
-    responseHandler(res, 'An error occured', 500);
+    responseHandler(res, 'Unauthorized access', 400);
   }
 };
 

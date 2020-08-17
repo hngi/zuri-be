@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const logger = require('morgan');
-// const cors = require('cors');
+const cors = require('cors');
 const path = require('path');
 
 const adminRouter = require('./routes/adminRoutes');
@@ -12,7 +12,7 @@ const { handleError } = require('./utils/error');
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

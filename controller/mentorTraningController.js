@@ -14,7 +14,6 @@ const mentorTraningValidator = () => [
   body('dob').isString().not().isEmpty(),
   body('stateOfResidence').isString().not().isEmpty(),
   body('cvLink').optional().isURL(),
-  body('interest').isString().not().isEmpty(),
   body('phoneNumber').isMobilePhone().not().isEmpty()
 ];
 
@@ -38,8 +37,7 @@ module.exports = {
         country,
         cvLink,
         employmentStatus,
-        stateOfResidence,
-        intrest
+        stateOfResidence
       } = req.body;
 
       const applicationExist = await ZuriTrainingMentor.findOne({ email });
@@ -58,8 +56,7 @@ module.exports = {
         country,
         cvLink,
         employmentStatus,
-        stateOfResidence,
-        intrest
+        stateOfResidence
       };
       const mentor = await ZuriTrainingMentor.create(application);
       return responseHandler(res, 'Successfully created an Application', 201, true, mentor);

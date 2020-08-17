@@ -7,25 +7,21 @@ const { responseHandler } = require('../utils/responseHandler');
 const internApplicationValidationRules = () => [
   body('firstName').isString().not().isEmpty(),
   body('lastName').isString().not().isEmpty(),
+  body('phoneNumber').isMobilePhone().not().isEmpty(),
   body('email').isEmail().not().isEmpty(),
-  body('country').isString().not().isEmpty(),
-  body('state').isString().not().isEmpty(),
   body('track').isString().not().isEmpty(),
-  body('employmentStatus').isString().not().isEmpty(),
-  body('gender').isString().not().isEmpty(),
-  body('dob').isString().not().isEmpty(),
-  body('phoneNumber').isLength({ min: 10 }).not().isEmpty(),
-  body('city').isString().not().isEmpty(),
-  body('zipcode').isString().not().isEmpty(),
-  body('address').isString().not().isEmpty()
-
+  body('course').isString().not().isEmpty(),
+  body('level').isString().not().isEmpty()
 ];
 const createIntern = async (req, res) => {
   const {
-    firstName, lastName, email, country, state, track, employmentStatus, gender, dob,
-    phoneNumber, city,
-    zipcode,
-    address
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    track,
+    course,
+    level
   } = req.body;
 
   try {
@@ -51,17 +47,11 @@ const createIntern = async (req, res) => {
     const intern = new Intern({
       firstName,
       lastName,
+      phoneNumber,
       email,
-      country,
-      city,
-      zipcode,
-      address,
-      state,
       track,
-      employmentStatus,
-      gender,
-      dob,
-      phoneNumber
+      course,
+      level
     });
     const recordSave = await intern.save();
     if (!recordSave) {
