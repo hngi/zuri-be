@@ -108,6 +108,26 @@ const getAllAcceptedMentors = async (req, res, next) => {
   }
 };
 
+// Get all declined mentor applications
+const getAllDeclinedMentors = async (req, res, next) => {
+  const queryArray = [];
+  // All query parameters
+  const params = req.query;
+  // Each query parameter should be assigned as an object and added the query array
+  Object.entries(params).forEach((param) => {
+    const queryObj = { [param[0]]: param[1] };
+    queryArray.push(queryObj);
+  });
+  // add this so that all declined applications will be returned when no query param is present
+  queryArray.push({ applicationState: 'declined' });
+  try {
+    const mentors = await Mentor.find({ $and: queryArray });
+    return responseHandler(res, 'All declined mentor applications', 200, true, { mentors });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 // accept a mentors application
 const acceptApplication = async (req, res, next) => {
   const mentorId = req.params.id;
@@ -129,6 +149,7 @@ const acceptApplication = async (req, res, next) => {
   }
 };
 
+// decline mentor application
 const declineApplication = async (req, res, next) => {
   const mentorId = req.params.id;
 
@@ -154,5 +175,7 @@ module.exports = {
   getAllMentorApplication,
   getSingleMentorApplication,
   getAllAcceptedMentors,
-  acceptApplication
+  getAllDeclinedMentors,
+  acceptApplication,
+  declineApplication
 };
