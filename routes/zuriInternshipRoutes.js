@@ -14,10 +14,13 @@ const {
   internshipMentorApplication,
   applicationValidationRules,
   getAllMentorApplication,
+  getAllAcceptedMentors,
   getSingleMentorApplication
 } = require('../controller/internshipMentorController');
 
 // Internship mentor routes
+router.get('/mentors/accepted', getAllAcceptedMentors);
+
 router.post('/mentors/apply', applicationValidationRules(), internshipMentorApplication);
 router.get('/mentors', getAllMentorApplication);
 router.get('/mentors/:id', getSingleMentorApplication);

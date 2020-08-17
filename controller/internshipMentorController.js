@@ -88,10 +88,30 @@ const getSingleMentorApplication = async (req, res, next) => {
     return next(err);
   }
 };
+// Get all accepted mentor applications
+const getAllAcceptedMentors = async (req, res, next) => {
+  const queryArray = [];
+  // All query parameters
+  const params = req.query;
+  // Each query parameter should be assigned as an object and added the query array
+  Object.entries(params).forEach((param) => {
+    const queryObj = { [param[0]]: param[1] };
+    queryArray.push(queryObj);
+  });
+  // add this so that all accepted applications will be returned when no query param is present
+  queryArray.push({ applicationState: 'accepted' });
+  try {
+    const mentors = await Mentor.find({ $and: queryArray });
+    return responseHandler(res, 'All accepted mentor applications', 200, true, { mentors });
+  } catch (err) {
+    return next(err);
+  }
+};
 
 module.exports = {
   applicationValidationRules,
   internshipMentorApplication,
   getAllMentorApplication,
-  getSingleMentorApplication
+  getSingleMentorApplication,
+  getAllAcceptedMentors
 };
