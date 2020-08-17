@@ -108,10 +108,32 @@ const getAllAcceptedMentors = async (req, res, next) => {
   }
 };
 
+// accept a mentors application
+const acceptApplication = async (req, res, next) => {
+  const mentorId = req.params.id;
+
+  if (!mongoose.isValidObjectId(mentorId)) {
+    return responseHandler(res, 'Invalid Id for mentor', 400, false);
+  }
+
+  try {
+    const mentor = await Mentor.findOne({ _id: mentorId });
+    if (!mentor) {
+      return responseHandler(res, 'Mentor not found', 404, false);
+    }
+
+    await mentor.update({ applicationState: 'accepted' });
+    return responseHandler(res, 'Mentor application accepted', 200, true);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   applicationValidationRules,
   internshipMentorApplication,
   getAllMentorApplication,
   getSingleMentorApplication,
-  getAllAcceptedMentors
+  getAllAcceptedMentors,
+  acceptApplication
 };

@@ -15,7 +15,8 @@ const {
   applicationValidationRules,
   getAllMentorApplication,
   getAllAcceptedMentors,
-  getSingleMentorApplication
+  getSingleMentorApplication,
+  acceptApplication
 } = require('../controller/internshipMentorController');
 
 // Internship mentor routes
@@ -24,7 +25,7 @@ router.get('/mentors/accepted', getAllAcceptedMentors);
 router.post('/mentors/apply', applicationValidationRules(), internshipMentorApplication);
 router.get('/mentors', getAllMentorApplication);
 router.get('/mentors/:id', getSingleMentorApplication);
-
+router.patch('/mentors/:id/accept', acceptApplication);
 
 // Zuri Intern routes
 router.get('/intern', getAllInterns);
