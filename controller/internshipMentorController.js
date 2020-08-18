@@ -88,10 +88,94 @@ const getSingleMentorApplication = async (req, res, next) => {
     return next(err);
   }
 };
+// Get all accepted mentor applications
+const getAllAcceptedMentors = async (req, res, next) => {
+  const queryArray = [];
+  // All query parameters
+  const params = req.query;
+  // Each query parameter should be assigned as an object and added the query array
+  Object.entries(params).forEach((param) => {
+    const queryObj = { [param[0]]: param[1] };
+    queryArray.push(queryObj);
+  });
+  // add this so that all accepted applications will be returned when no query param is present
+  queryArray.push({ applicationState: 'accepted' });
+  try {
+    const mentors = await Mentor.find({ $and: queryArray });
+    return responseHandler(res, 'All accepted mentor applications', 200, true, { mentors });
+  } catch (err) {
+    return next(err);
+  }
+};
 
+// Get all declined mentor applications
+const getAllDeclinedMentors = async (req, res, next) => {
+  const queryArray = [];
+  // All query parameters
+  const params = req.query;
+  // Each query parameter should be assigned as an object and added the query array
+  Object.entries(params).forEach((param) => {
+    const queryObj = { [param[0]]: param[1] };
+    queryArray.push(queryObj);
+  });
+  // add this so that all declined applications will be returned when no query param is present
+  queryArray.push({ applicationState: 'declined' });
+  try {
+    const mentors = await Mentor.find({ $and: queryArray });
+    return responseHandler(res, 'All declined mentor applications', 200, true, { mentors });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+// accept a mentors application
+const acceptApplication = async (req, res, next) => {
+  const mentorId = req.params.id;
+
+  if (!mongoose.isValidObjectId(mentorId)) {
+    return responseHandler(res, 'Invalid Id for mentor', 400, false);
+  }
+
+  try {
+    const mentor = await Mentor.findOne({ _id: mentorId });
+    if (!mentor) {
+      return responseHandler(res, 'Mentor not found', 404, false);
+    }
+
+    await mentor.update({ applicationState: 'accepted' });
+    return responseHandler(res, 'Mentor application accepted', 200, true);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+// decline mentor application
+const declineApplication = async (req, res, next) => {
+  const mentorId = req.params.id;
+
+  if (!mongoose.isValidObjectId(mentorId)) {
+    return responseHandler(res, 'Invalid Id for mentor', 400, false);
+  }
+
+  try {
+    const mentor = await Mentor.findOne({ _id: mentorId });
+    if (!mentor) {
+      return responseHandler(res, 'Mentor not found', 404, false);
+    }
+
+    await mentor.update({ applicationState: 'declined' });
+    return responseHandler(res, 'Mentor application declined', 200, true);
+  } catch (err) {
+    return next(err);
+  }
+};
 module.exports = {
   applicationValidationRules,
   internshipMentorApplication,
   getAllMentorApplication,
-  getSingleMentorApplication
+  getSingleMentorApplication,
+  getAllAcceptedMentors,
+  getAllDeclinedMentors,
+  acceptApplication,
+  declineApplication
 };

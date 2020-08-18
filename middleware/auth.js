@@ -7,7 +7,7 @@ const authourizeSuperadmin = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) {
-      responseHandler(res, 'unauthorized access', 400);
+      responseHandler(res, 'unauthorized access', 403);
     }
 
     const decodeData = await jwt.verify(token, JWTKey);
@@ -15,7 +15,7 @@ const authourizeSuperadmin = async (req, res, next) => {
     const isSuperadmin = await Admin.findById({ _id: decodeData.adminId });
     if (!isSuperadmin) return responseHandler(res, 'unauthorized access');
     if (isSuperadmin.role !== 'superAdmin') {
-      responseHandler(res, 'unauthorized access', 400);
+      responseHandler(res, 'unauthorized access', 403);
     }
     return next();
   } catch (error) {

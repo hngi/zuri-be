@@ -90,9 +90,26 @@ const zuriInternApplication = async (req, res, next) => {
   }
 };
 
+const getZuriInternByID = async (req, res, next) => {
+  const internId = req.params.id;
+  if (!mongoose.isValidObjectId(internId)) {
+    return responseHandler(res, 'Invalid Id for a intern', 400);
+  }
+  try {
+    const intern = await Intern.findOne({ _id: internId });
+    if (!intern) {
+      return responseHandler(res, 'Intern not found', 404);
+    }
+    return responseHandler(res, 'Intern', 200, true, { intern });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   zuriInternValidationRules,
   zuriInternApplication,
   getAllInterns,
-  filterInterns,
+  getZuriInternByID,
+  filterInterns
 };
