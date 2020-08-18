@@ -15,8 +15,8 @@ const router = express.Router();
 // Admin routes
 router.post('/auth', login);
 router.get('/logout', logout);
-router.post('/superadmin/create/admin', adminValidator(), addAdmin);
-router.delete('/superadmin/delete/:adminId', deleteAdmin);
+router.post('/superadmin/create/admin', [adminValidator(), authourizeSuperadmin], addAdmin);
+router.delete('/superadmin/delete/:adminId', authourizeSuperadmin, deleteAdmin);
 
 router.get('/analytics/toplevel', topAnalytics);
 
@@ -29,6 +29,6 @@ router.get(
   internMentorTrackStats
 );
 router.get('/admin/:id', getAdmin);
-router.get('/superadmin/all/admins', getAllAdmin);
+router.get('/superadmin/all/admins', authourizeSuperadmin, getAllAdmin);
 
 module.exports = router;
