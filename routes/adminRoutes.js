@@ -2,7 +2,7 @@ const express = require('express');
 const { authourizeSuperadmin } = require('../middleware/auth');
 
 const {
-  login, logout, getAdmin, getAllAdmin, addAdmin, deleteAdmin, adminValidator
+  login, logout, getAdmin, getAllInternAdmin, getAllTrainingAdmin, addAdmin, deleteAdmin, adminValidator
 } = require('../controller/adminController');
 const {
   topAnalytics,
@@ -29,6 +29,7 @@ router.get(
   internMentorTrackStats
 );
 router.get('/admin/:id', getAdmin);
-router.get('/superadmin/all/admins', authourizeSuperadmin, getAllAdmin);
+router.get('/superadmin/training/admins', authourizeSuperadmin, getAllTrainingAdmin);
+router.get('/superadmin/intern/admins', authourizeSuperadmin, getAllInternAdmin);
 
 module.exports = router;
