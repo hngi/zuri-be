@@ -142,8 +142,30 @@ const deleteAdmin = async (req, res) => {
     return responseHandler(res, error.message, 500, false);
   }
 };
-const getAllAdmin = (req, res) => {
-  Admin.find({})
+
+const getAllTrainingAdmin = (req, res) => {
+  Admin.find({ category: 'hngi' })
+    .then((result) => {
+      responseHandler(
+        res,
+        'Successfully retrieved all training admins',
+        200,
+        true,
+        result
+      );
+    })
+    .catch((err) => {
+      responseHandler(
+        res,
+        'Something went worng, Could not retrieve admin',
+        500,
+        false
+      );
+    });
+};
+
+const getAllInternAdmin = (req, res) => {
+  Admin.find({ category: 'startng' })
     .then((result) => {
       responseHandler(
         res,
@@ -186,6 +208,7 @@ module.exports = {
   addAdmin,
   deleteAdmin,
   getAdmin,
-  getAllAdmin,
+  getAllTrainingAdmin,
+  getAllInternAdmin,
   adminValidator
 };
