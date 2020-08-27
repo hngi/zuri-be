@@ -144,7 +144,7 @@ const deleteAdmin = async (req, res) => {
 };
 
 const getAllTrainingAdmin = (req, res) => {
-  Admin.find({ category: 'hngi' })
+  Admin.find({ category: 'startng' })
     .then((result) => {
       responseHandler(
         res,
@@ -165,7 +165,7 @@ const getAllTrainingAdmin = (req, res) => {
 };
 
 const getAllInternAdmin = (req, res) => {
-  Admin.find({ category: 'startng' })
+  Admin.find({ category: 'hngi' })
     .then((result) => {
       responseHandler(
         res,
