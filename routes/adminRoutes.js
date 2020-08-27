@@ -2,7 +2,8 @@ const express = require('express');
 const { authourizeSuperadmin } = require('../middleware/auth');
 
 const {
-  login, logout, getAdmin, getAllInternAdmin, getAllTrainingAdmin, addAdmin, deleteAdmin, adminValidator
+  login, logout, getAdmin, getAllInternAdmin,
+  getAllTrainingAdmin, addAdmin, deleteAdmin, adminValidator
 } = require('../controller/adminController');
 const {
   topAnalytics,
