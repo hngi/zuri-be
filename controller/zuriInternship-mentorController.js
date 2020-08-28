@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-const Mentor = require('../models/ZuriInternMentorModel');
+const Mentor = require('../models/ZuriInternship-MentorModel');
 const { responseHandler } = require('../utils/responseHandler');
 
 // Application rules

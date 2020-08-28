@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-const ZuriTrainingMentor = require('../models/ZuriTrainingMentorModel');
+const ZuriTrainingMentor = require('../models/ZuriTraining-MentorModel');
 const { responseHandler } = require('../utils/responseHandler');
 
 const mentorTraningValidator = () => [
@@ -72,8 +72,7 @@ module.exports = {
       const { id } = req.params;
       const application = await ZuriTrainingMentor.findById({ _id: id });
       if (!application) {
-        responseHandler(res, "Mentor's Application not found");
-        return;
+        return responseHandler(res, "Mentor's Application not found");
       }
       application.applicationState = 'declined';
       await application.save();
@@ -91,8 +90,7 @@ module.exports = {
       const { id } = req.params;
       const application = await ZuriTrainingMentor.findById({ _id: id });
       if (!application) {
-        responseHandler(res, "Mentor's Application not found");
-        return;
+        return responseHandler(res, "Mentor's Application not found");
       }
       application.applicationState = 'accepted';
       await application.save();

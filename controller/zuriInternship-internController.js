@@ -1,26 +1,18 @@
 const { body, validationResult } = require('express-validator');
-const mongoose = require('mongoose');
-const ZuriIntern = require('../models/ZuriInternModel');
+const ZuriIntern = require('../models/ZuriInternship-InternModel');
 
 const { responseHandler } = require('../utils/responseHandler');
 
 // Zuri Get all interns
 const getAllInterns = async (req, res) => {
-  let searchValue;
-  // Zuri  query value
-  if (req.query.firstName) {
-    searchValue = {
-      firstName: req.query.firstName,
-    };
-// get all interns
-  } else {
-    searchValue = {};
-  }
   try {
-    const zuriInterns = await ZuriIntern.find(searchValue);
-    return responseHandler(res, 'Success', 200, true, zuriInterns);
-  } catch (err) {
-    return responseHandler(res, 'An Error occured', 500, false, err);
+    const data = await ZuriIntern.find();
+    if (!data) {
+      return responseHandler(res, 'Data unavailable!', 401, false);
+    }
+    return responseHandler(res, 'Successfully retrieved all interns', 200, true, data);
+  } catch (error) {
+    return responseHandler(res, 'An error occured, could not retrieve interns', 500, false);
   }
 };
 
@@ -33,7 +25,7 @@ const filterInterns = async (req, res) => {
     };
   } else {
     filterValue = {
-      track: '',
+      track: ''
     };
   }
   try {
@@ -58,7 +50,7 @@ const zuriInternValidationRules = () => [
   body('phoneNumber').isMobilePhone().not().isEmpty()
 ];
 
-// Zuri Intern Application
+// ZuriInternship Intern Application
 const zuriInternApplication = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -69,24 +61,37 @@ const zuriInternApplication = async (req, res, next) => {
 
   const { email } = req.body;
   try {
-    // check if the email is already in use
     const intern = await ZuriIntern.findOne({ email });
     if (intern) {
-      return responseHandler(
-        res,
-        'Email address already used for application',
-        400,
-        true
-      );
+      return responseHandler(res, 'Email address already used for application', 400, true);
     }
-    // create the new intern application
     let newIntern = new ZuriIntern(req.body);
     newIntern = await newIntern.save();
     return responseHandler(res, ' Application is successful', 201, true, {
-      intern: newIntern,
+      data: newIntern
     });
   } catch (err) {
     return next(err);
+  }
+};
+
+const deactivateIntern = async (req, res) => {
+  try {
+    const { internId } = req.params;
+    const intern = await ZuriIntern.findById({ _id: internId });
+
+    if (!intern) {
+      return responseHandler(res, 'Intern does not exist!', 401, false);
+    }
+
+    await ZuriIntern.findByIdAndDelete(internId, (err) => {
+      if (err) {
+        return responseHandler(res, err.message, 400, false);
+      }
+      return responseHandler(res, 'Intern deleted successfully', 200, true, intern);
+    });
+  } catch (error) {
+    return responseHandler(res, error.message, 500, false);
   }
 };
 
@@ -95,4 +100,5 @@ module.exports = {
   zuriInternApplication,
   getAllInterns,
   filterInterns,
+  deactivateIntern
 };
