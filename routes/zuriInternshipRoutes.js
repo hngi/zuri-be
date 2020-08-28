@@ -11,16 +11,20 @@ const {
 } = require('../controller/zuriInternship-internController');
 
 const {
-  internshipMentorApplication,
+  zuriInternshipMentorApplication,
   applicationValidationRules,
   getAllMentorApplication,
-  getSingleMentorApplication
+  getSingleMentorApplication,
+  getAllMentors,
+  deactivateMentor
 } = require('../controller/zuriInternship-mentorController');
 
 // Internship mentor routes
-router.post('/mentors/apply', applicationValidationRules(), internshipMentorApplication);
+router.post('/mentors/apply', applicationValidationRules(), zuriInternshipMentorApplication);
 router.get('/mentors', getAllMentorApplication);
 router.get('/mentors/:id', getSingleMentorApplication);
+router.get('/mentor/all', getAllMentors);
+router.delete('/mentor/delete/:mentorId', deactivateMentor);
 
 // Zuri Intern routes
 router.post('/intern/apply', zuriInternValidationRules(), zuriInternApplication);

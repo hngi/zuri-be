@@ -18,7 +18,7 @@ const applicationValidationRules = () => [
   body('phoneNumber').isMobilePhone().not().isEmpty()
 ];
 
-const internshipMentorApplication = async (req, res) => {
+const zuriInternshipMentorApplication = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const err = errors.array();
@@ -89,9 +89,43 @@ const getSingleMentorApplication = async (req, res, next) => {
   }
 };
 
+const getAllMentors = async (req, res) => {
+  try {
+    const data = await Mentor.find();
+    if (!data) {
+      return responseHandler(res, 'Data unavailable!', 401, false);
+    }
+    return responseHandler(res, 'Successfully retrieved all internship mentors', 200, true, data);
+  } catch (error) {
+    return responseHandler(res, 'An error occured, could not retrieve mentors', 500, false);
+  }
+};
+
+const deactivateMentor = async (req, res) => {
+  try {
+    const { mentorId } = req.params;
+    const mentor = await Mentor.findById({ _id: mentorId });
+
+    if (!mentor) {
+      return responseHandler(res, 'Mentor does not exist!', 401, false);
+    }
+
+    await Mentor.findByIdAndDelete(mentorId, (err) => {
+      if (err) {
+        return responseHandler(res, err.message, 400, false);
+      }
+      return responseHandler(res, 'Mentor deleted successfully', 200, true, mentor);
+    });
+  } catch (error) {
+    return responseHandler(res, error.message, 500, false);
+  }
+};
+
 module.exports = {
   applicationValidationRules,
-  internshipMentorApplication,
+  zuriInternshipMentorApplication,
   getAllMentorApplication,
-  getSingleMentorApplication
+  getSingleMentorApplication,
+  getAllMentors,
+  deactivateMentor
 };
