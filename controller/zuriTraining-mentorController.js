@@ -108,7 +108,7 @@ module.exports = {
       const applications = await ZuriTrainingMentor.find({});
       return responseHandler(res, 'Successfully fetched all applications', 200, true, applications);
     } catch (err) {
-      res.status(500).json({
+      return res.status(500).json({
         error: err
       });
     }
