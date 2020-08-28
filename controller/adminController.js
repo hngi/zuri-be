@@ -102,6 +102,14 @@ const addAdmin = async (req, res) => {
     if (!adminAdded) {
       return responseHandler(res, 'Unable to create Admin', 401, false);
     }
+    const data = {
+      name: adminAdded.name,
+      email: adminAdded.email,
+      role: adminAdded.role,
+      category: adminAdded.category,
+      ID: adminAdded._id
+    };
+
     // send admin login details
     const link = `${config.ZuriUrl}/login`;
     const details = {
@@ -114,7 +122,7 @@ const addAdmin = async (req, res) => {
     };
     try {
       await sendEmail(details);
-      return responseHandler(res, 'Admin created successfully', 200, true);
+      return responseHandler(res, 'Admin created successfully', 200, true, data);
     } catch (err) {
       return responseHandler(res, err.message, 500, false);
     }
@@ -143,63 +151,44 @@ const deleteAdmin = async (req, res) => {
   }
 };
 
-const getAllTrainingAdmin = (req, res) => {
-  Admin.find({ category: 'startng' })
-    .then((data) => {
-      responseHandler(
-        res,
-        'Successfully retrieved all training admins',
-        200,
-        true,
-        data
-      );
-    })
-    .catch((err) => {
-      responseHandler(
-        res,
-        'Something went worng, Could not retrieve admin',
-        500,
-        false
-      );
-    });
+const getAllTrainingAdmin = async (req, res) => {
+  try {
+    const admins = await Admin.find({ category: 'startng' }).select('-password');
+    if (!admins) {
+      return responseHandler(res, 'Admins does not exist!', 401, false);
+    }
+
+    return responseHandler(res, 'Successfully retrieved all training admins', 200, true, admins);
+  } catch (error) {
+    return responseHandler(res, 'Something went wrong, Could not retrieve admin', 500, false);
+  }
 };
 
-const getAllInternAdmin = (req, res) => {
-  Admin.find({ category: 'hngi' })
-    .then((data) => {
-      responseHandler(
-        res,
-        'Successfully retrieved all admins',
-        200,
-        true,
-        data
-      );
-    })
-    .catch((err) => {
-      responseHandler(
-        res,
-        'Something went worng, Could not retrieve admin',
-        500,
-        false
-      );
-    });
+const getAllInternAdmin = async (req, res) => {
+  try {
+    const admins = await Admin.find({ category: 'hngi' }).select('-password');
+    if (!admins) {
+      return responseHandler(res, 'Admins does not exist!', 401, false);
+    }
+
+    return responseHandler(res, 'Successfully retrieved all internship admins', 200, true, admins);
+  } catch (error) {
+    return responseHandler(res, 'Something went wrong, Could not retrieve admin', 500, false);
+  }
 };
 
-const getAdmin = (req, res) => {
-  const _id = req.params.id;
-  Admin.find({ _id })
-    .then((data) => {
-      responseHandler(res, 'Admin successfully retrieved', 200, true, data);
-    })
-    .catch((err) => {
-      responseHandler(
-        res,
-        'Something went worng, Could not retrieve admin',
-        500,
-        false,
-        err
-      );
-    });
+const getAdmin = async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const admin = await Admin.find({ _id }).select('-password');
+
+    if (!admin) {
+      return responseHandler(res, 'Admins does not exist!', 401, false);
+    }
+    return responseHandler(res, 'Admin successfully retrieved', 200, true, admin);
+  } catch (error) {
+    return responseHandler(res, 'Something went wrong, Could not retrieve admin', 500, false);
+  }
 };
 
 module.exports = {
