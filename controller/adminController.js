@@ -107,7 +107,7 @@ const addAdmin = async (req, res) => {
       email: adminAdded.email,
       role: adminAdded.role,
       category: adminAdded.category,
-      ID: adminAdded._id
+      _id: adminAdded._id
     };
 
     // send admin login details
