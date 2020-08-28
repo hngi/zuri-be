@@ -12,7 +12,6 @@ const {
 } = require('../controller/zuriTraining-mentorController');
 
 const {
-  // getZuriTraining,
   findByNameIntern,
   filterInternTrainingData,
   findByNameMentor,
