@@ -131,5 +131,25 @@ module.exports = {
     }
   },
 
+  deactivateMentor: async (req, res) => {
+    try {
+      const { mentorId } = req.params;
+      const mentor = await ZuriTrainingMentor.findById({ _id: mentorId });
+
+      if (!mentor) {
+        return responseHandler(res, 'Mentor does not exist!', 401, false);
+      }
+
+      await ZuriTrainingMentor.findByIdAndDelete(mentorId, (err) => {
+        if (err) {
+          return responseHandler(res, err.message, 400, false);
+        }
+        return responseHandler(res, 'Mentor deleted successfully', 200, true, mentor);
+      });
+    } catch (error) {
+      return responseHandler(res, error.message, 500, false);
+    }
+  },
+
   mentorTraningValidator
 };

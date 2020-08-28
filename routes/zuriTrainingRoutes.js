@@ -8,7 +8,7 @@ const {
 
 const {
   createApplication, declineApplication, acceptApplication, allApplication, mentorTraningValidator,
-  getSingleMentorApplication
+  getSingleMentorApplication, deactivateMentor
 } = require('../controller/zuriTraining-mentorController');
 
 const {
@@ -34,6 +34,7 @@ router.get('/mentor/applications', allApplication);
 router.get('/mentor/applications/:id', getSingleMentorApplication);
 router.get('/mentor/:firstName', findByNameMentor);
 router.get('/mentor/filter/:filterBy', filterMentorTrainingData);
+router.delete('/mentor/delete/:mentorId', deactivateMentor);
 
 // mentor csv routes
 router.get('/mentor/all/csv', getZuriMentorCSV);
