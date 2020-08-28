@@ -145,13 +145,13 @@ const deleteAdmin = async (req, res) => {
 
 const getAllTrainingAdmin = (req, res) => {
   Admin.find({ category: 'startng' })
-    .then((result) => {
+    .then((data) => {
       responseHandler(
         res,
         'Successfully retrieved all training admins',
         200,
         true,
-        result
+        data
       );
     })
     .catch((err) => {
@@ -166,13 +166,13 @@ const getAllTrainingAdmin = (req, res) => {
 
 const getAllInternAdmin = (req, res) => {
   Admin.find({ category: 'hngi' })
-    .then((result) => {
+    .then((data) => {
       responseHandler(
         res,
         'Successfully retrieved all admins',
         200,
         true,
-        result
+        data
       );
     })
     .catch((err) => {
@@ -188,8 +188,8 @@ const getAllInternAdmin = (req, res) => {
 const getAdmin = (req, res) => {
   const _id = req.params.id;
   Admin.find({ _id })
-    .then((result) => {
-      responseHandler(res, 'Admin successfully retrieved', 200, true, result);
+    .then((data) => {
+      responseHandler(res, 'Admin successfully retrieved', 200, true, data);
     })
     .catch((err) => {
       responseHandler(
