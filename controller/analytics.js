@@ -1,7 +1,7 @@
 const { responseHandler } = require('../utils/responseHandler');
-const Interns = require('../models/ZuriInternModel');
+const Interns = require('../models/ZuriInternship-InternModel');
 const Admin = require('../models/Admin');
-const Mentor = require('../models/ZuriInternMentorModel');
+const Mentor = require('../models/ZuriInternship-MentorModel');
 
 const internMentorApplicationStatusStatistics = (req, res, next) => {
   const approved = {

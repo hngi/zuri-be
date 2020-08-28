@@ -1,14 +1,7 @@
-const ZuriTrainingModel = require('../models/ZuriTrainingModel');
-const ZuriTrainingMentorModel = require('../models/ZuriTrainingMentorModel');
+const ZuriTrainingModel = require('../models/ZuriTraining-InternModel');
+const ZuriTrainingMentorModel = require('../models/ZuriTraining-MentorModel');
 const { responseHandler } = require('../utils/responseHandler');
 const downloadCSV = require('../utils/jsonToCsv');
-
-const getZuriTraining = async (req, res) => {
-  // fetch all zuri training data
-  // by @ajibadeabd
-  const ZuriTraining = await ZuriTrainingModel.find({}, { __v: 0 });
-  if (!ZuriTraining) { responseHandler(res, 'error occur while fecting zuri Traning data'); } else { responseHandler(res, 'all zuritraining data fetch', 200, true, { ZuriTraining }); }
-};
 
 const findByNameIntern = (req, res) => {
   ZuriTrainingModel.find({ firstName: req.params.firstName }).then((result) => {
@@ -245,7 +238,6 @@ const filterMentorTrainingDataCSV = (req, res) => {
 };
 
 module.exports = {
-  getZuriTraining,
   filterMentorTrainingData,
   filterInternTrainingData,
   findByNameMentor,
