@@ -4,7 +4,7 @@ const { responseHandler } = require('../utils/responseHandler');
 const downloadCSV = require('../utils/jsonToCsv');
 
 const findByNameIntern = (req, res) => {
-  ZuriTrainingModel.find({ firstName: req.params.firstName }).then((result) => {
+  ZuriTrainingModel.find({ name: req.params.name }).then((result) => {
     responseHandler(res, 'Operation successful', 200, true, result);
   }).catch((err) => {
     responseHandler(res, 'Something went wrong', 500, false, err);

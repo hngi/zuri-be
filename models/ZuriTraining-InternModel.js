@@ -4,11 +4,11 @@ const uniqueValidator = require('mongoose-unique-validator');
 const { Schema } = mongoose;
 
 const zuriTrainingSchema = Schema({
-  firstName: {
+  name: {
     type: String,
     required: true
   },
-  lastName: {
+  gender: {
     type: String,
     required: true
   },
@@ -17,7 +17,7 @@ const zuriTrainingSchema = Schema({
     required: true,
     unique: true
   },
-  course: {
+  age: {
     type: String,
     required: true
   },
@@ -27,14 +27,28 @@ const zuriTrainingSchema = Schema({
   },
   track: {
     type: String,
-    enum: ['frontend', 'mobile', 'design', 'backend'],
     required: true
   },
   level: {
     type: String,
-    enum: ['beginner', 'intermediate'],
     default: 'beginner'
-  }
+  },
+  achievement: {
+    type: String,
+    required: false
+  },
+  eduLevel: {
+    type: String,
+    required: false
+  },
+  employmentStatus: {
+    type: String,
+    required: false
+  },
+  location: {
+    type: String,
+    required: false
+  },
 },
 {
   timestamps: true

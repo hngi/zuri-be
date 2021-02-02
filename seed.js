@@ -9,7 +9,7 @@ const seedAdmin = async () => {
   const adminExist = chalk.blue('[👌] super admin exist');
   const adminCreated = chalk.green('[✅] super admin created');
   console.log(logInit);
-  await Admins.findOne({ email: 'admin@example.com' }).then(
+  await Admins.findOne({ email: 'admin1@example.com' }).then(
     (admin) => {
       if (admin) {
         console.log(adminExist);
