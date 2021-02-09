@@ -26,7 +26,9 @@ const createIntern = async (req, res) => {
       track,
       employmentStatus,
       level,
-      location
+      location,
+      country,
+      referredFrom
     } = req.body;
 
     const errors = validationResult(req);
@@ -55,7 +57,9 @@ const createIntern = async (req, res) => {
       track,
       level,
       employmentStatus,
-      location
+      location,
+      country,
+      referredFrom
     });
     const recordSave = await intern.save();
     if (!recordSave) {

@@ -49,6 +49,14 @@ const zuriTrainingSchema = Schema({
     type: String,
     required: false
   },
+  country: {
+    type: String,
+    required: false
+  },
+  referredFrom: {
+    type: String,
+    required: false
+  }
 },
 {
   timestamps: true
