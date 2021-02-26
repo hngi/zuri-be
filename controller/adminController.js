@@ -9,7 +9,7 @@ const Admin = require('../models/Admin');
 const { JWTKey } = require('../config');
 const { responseHandler } = require('../utils/responseHandler');
 const { passwordHash } = require('../utils/password-hash');
-const sendEmail = require('../utils/send-email');
+const sendEmail = require('../utils/email/send-email');
 const config = require('../config.js');
 
 const adminValidator = () => [

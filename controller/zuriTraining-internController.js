@@ -2,6 +2,8 @@
 /* eslint-disable no-console */
 const { body, validationResult } = require('express-validator');
 const Intern = require('../models/ZuriTraining-InternModel');
+const sendEmail = require('../utils/email/send-email');
+const { message } = require('../utils/email/template/zuriTrainingWelcome');
 const { responseHandler } = require('../utils/responseHandler');
 
 const internApplicationValidationRules = () => [
@@ -35,8 +37,8 @@ const createIntern = async (req, res) => {
     const err = errors.array();
     const myarray = [];
     err.forEach((er) => {
-      const message = `${er.msg} in ${er.param}`;
-      myarray.push(message);
+      const errMessage = `${er.msg} in ${er.param}`;
+      myarray.push(errMessage);
     });
     if (myarray.length > 0) {
       return responseHandler(res, 'An error occured in your inputs', 422, false, myarray);
@@ -65,8 +67,15 @@ const createIntern = async (req, res) => {
     if (!recordSave) {
       return responseHandler(res, 'Unable to register application', 401, false);
     }
+    const option = {
+      email,
+      subject: 'Welcome to Zuri Training - Ready to get started?',
+      message: await message()
+    };
+    await sendEmail(option);
     return responseHandler(res, 'Successfully Registered', 201, true, recordSave);
   } catch (error) {
+    console.log(error);
     return responseHandler(res, 'Inputs error', 500, false, error.message);
   }
 };
