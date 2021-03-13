@@ -116,7 +116,7 @@ exports.message = async () => {
                     <td class="o_bg-white o_px-md o_py" align="center" style="background-color: #ffffff;padding-left: 24px;padding-right: 24px;padding-top: 16px;padding-bottom: 16px;">
                       <!--[if mso]><table width="584" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td align="center"><![endif]-->
                       <div class="o_col-6s o_sans o_text o_text-secondary o_center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;max-width: 584px;color: #424651;text-align: center;">
-                        <h2> Welcome to Zuri Training. </h2>
+                        <h2> Welcome to Zuri x I4G Training  </h2>
 
                         Your registration was successful.
                          
@@ -143,7 +143,7 @@ exports.message = async () => {
                         
                         <p style="text-align: left;">Regards,</p> 
                         
-                        <p style="text-align: left;">The Zuri Training Team.</p>
+                        <p style="text-align: left;">Zuri x I4G</p>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
                     </td>
