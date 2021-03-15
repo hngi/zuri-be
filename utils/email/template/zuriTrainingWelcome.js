@@ -118,11 +118,11 @@ exports.message = async () => {
                       <div class="o_col-6s o_sans o_text o_text-secondary o_center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;max-width: 584px;color: #424651;text-align: center;">
                         <h2> Welcome to Zuri x I4G Training  </h2>
 
-                        Your registration was successful.
+                        <p style="text-align: left;">Your registration was successful.</p>
                          
-                        This is where you will learn all that you need to get started in tech, your journey into this exciting new horizon starts here! <br />
+                        <p style="text-align: left;">This is where you will learn all that you need to get started in tech, your journey into this exciting new horizon starts here! </p>
 
-Every necessary resource has been put in place for you to have a smooth ride as you embark on this journey with us. Please make best use of the opportunity to learn, grow, make new friends, and have fun.
+                        <p style="text-align: left;">Every necessary resource has been put in place for you to have a smooth ride as you embark on this journey with us. Please make best use of the opportunity to learn, grow, make new friends, and have fun.</p>
                         
                         <p style="text-align: left;">This message contains the first set of all information needed to make your learning experience a fruitful one:</p>
                         
