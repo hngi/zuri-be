@@ -124,14 +124,10 @@ exports.message = async () => {
 
 Every necessary resource has been put in place for you to have a smooth ride as you embark on this journey with us. Please make best use of the opportunity to learn, grow, make new friends, and have fun.
                         
-                        <p>This message contains the first set of all information needed to make your learning experience a fruitful one:</p>
+                        <p style="text-align: left;">This message contains the first set of all information needed to make your learning experience a fruitful one:</p>
                         
-                        <p style="text-align: left;"><b>What You Need:</b>  A laptop, tablet, or desktop PC with an internet
-                           connection. Also – a good dose of passion to learn and determination 
-                           to keep studying with us.</p> 
-
-
-                        <ul>
+            
+                        <ul style="text-align: left;">
                         
                           <li>Join the slack workspace by <a href="https://training.zuri.team/join-the-workspace">clicking here</a></li>
                           <li>Once you are in, update your profile, include a username (it should be a single word with no spaces), add your official name and use a  profile picture that clearly shows your face (this is very important)</li>
