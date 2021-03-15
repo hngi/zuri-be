@@ -120,25 +120,35 @@ exports.message = async () => {
 
                         Your registration was successful.
                          
-                        On March 15, 2021 you begin your exciting journey towards a career in software development!  We look forward to introducing you to critical new skills that will help prepare you for a starting position in the tech world. Please see below for some key information about our program:
+                        This is where you will learn all that you need to get started in tech, your journey into this exciting new horizon starts here! <br />
+
+Every necessary resource has been put in place for you to have a smooth ride as you embark on this journey with us. Please make best use of the opportunity to learn, grow, make new friends, and have fun.
                         
-                        <h4>WHAT YOU NEED TO KNOW:</h4>
+                        <p>This message contains the first set of all information needed to make your learning experience a fruitful one:</p>
                         
                         <p style="text-align: left;"><b>What You Need:</b>  A laptop, tablet, or desktop PC with an internet
                            connection. Also – a good dose of passion to learn and determination 
                            to keep studying with us.</p> 
+
+
+                        <ul>
                         
-                        <p style="text-align: left;"><b>Next Steps:</b> Prior to March 15, you will receive login details for the program.</p> 
+                          <li>Join the slack workspace by <a href="https://training.zuri.team/join-the-workspace">clicking here</a></li>
+                          <li>Once you are in, update your profile, include a username (it should be a single word with no spaces), add your official name and use a  profile picture that clearly shows your face (this is very important)</li>
+                          <li>Introduce yourself in the #introduction channel</li>
+                          <li>Read the welcome messages on #announcement channel and follow all instruction</li>
+                          <li>We understand that you are new to the ecosystem, hence we have provided you with handful of experienced mentors that will guide you throughout the journey. Feel free to ask them any question and clarifications.</li>
+                          <li>weet or post this on instagram to create awareness for others:</li>
+                        </ul>
+                        <p style="text-align: left;"> “I have just been accepted into the #I4GHNGScholarship and I’ll be embarking on a journey to learn how to code (or design) with @ingressive4Good and @thezuriteam”</p>
+
+                      
+                        <p style="text-align: left;">Note that this training involves a couple of activities, including assignments on growth and learning initiatives which we expect you to partake actively .</p>
+
+                        <p style="text-align: left;">Once again, Our team will be on hand to assist throughout the period of the program.</p>
+ 
+                        <p style="text-align: left;">We look forward to seeing all that you achieve together over the next couple of months.</p>
                         
-                        <p style="text-align: left;"><i>There is nothing you need to do before then to prepare (except to respond to any email inquiries we might send!)</i></p> 
-                        
-                        <p style="text-align: left;"><b>Time Commitment:</b> This is a 4-month, 100% online/remote learning experience, and thanks to our partner Ingressive4Good, completely free.  Our program is designed to fit into your schedule, so you can choose your own hours.  You will need to dedicate at least 15 hours per week to be successful.</p> 
-                          
-                        <p style="text-align: left;"><b>How It Works:</b> You will learn the fundamental concepts of software development through a range of formats: recorded and live video sessions, training modules, and chats with your instructors, mentors and peers. Each week, you will do an assignment and the instructor will assess your work (on a Pass/Fail system).  If you fall behind, you have a week to catch up on your assignment and a mentor who will check in with you. If you fall behind after that, you can stop the program and re-enroll the following session.</p> 
-                        
-                        
-                        
-                        <p style="text-align: left;">If you have additional questions, please contact us by hitting reply on this email.</p> 
                         
                         
                         <p style="text-align: left;">Regards,</p> 
