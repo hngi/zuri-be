@@ -124,7 +124,7 @@ exports.message = async () => {
 
                         <p style="text-align: left;">You'll get more information about the next cohort in a few months</p>
                         
-                        <p style="text-align: left;">You can follow us on twitter to keep updated on latest information <a href="https://twitter.com/thezuriteam">The Zuri Twitter</a></p>
+                        <p style="text-align: left;">You can follow us on twitter to keep updated on latest information <a href="https://twitter.com/thezuriteam``">The Zuri Twitter</a></p>
                         
             
                         
