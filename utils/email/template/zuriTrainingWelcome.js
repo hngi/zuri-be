@@ -116,40 +116,22 @@ exports.message = async () => {
                     <td class="o_bg-white o_px-md o_py" align="center" style="background-color: #ffffff;padding-left: 24px;padding-right: 24px;padding-top: 16px;padding-bottom: 16px;">
                       <!--[if mso]><table width="584" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td align="center"><![endif]-->
                       <div class="o_col-6s o_sans o_text o_text-secondary o_center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;max-width: 584px;color: #424651;text-align: center;">
-                        <h2> Welcome to Zuri x I4G Training  </h2>
+                        <h2> Welcome to Zuri Training  </h2>
 
                         <p style="text-align: left;">Your registration was successful.</p>
                          
-                        <p style="text-align: left;">This is where you will learn all that you need to get started in tech, your journey into this exciting new horizon starts here! </p>
+                        <p style="text-align: left;">You have now been placed on our waitlist </p>
 
-                        <p style="text-align: left;">Every necessary resource has been put in place for you to have a smooth ride as you embark on this journey with us. Please make best use of the opportunity to learn, grow, make new friends, and have fun.</p>
+                        <p style="text-align: left;">You'll get more information about the next cohort in a few months</p>
                         
-                        <p style="text-align: left;">This message contains the first set of all information needed to make your learning experience a fruitful one:</p>
+                        <p style="text-align: left;">You can follow us on twitter to keep updated on latest information <a href="https://twitter.com/thezuriteam">The Zuri Twitter</a></p>
                         
             
-                        <ul style="text-align: left;">
-                        
-                          <li>Join the slack workspace by <a href="https://training.zuri.team/join-the-workspace">clicking here</a></li>
-                          <li>Once you are in, update your profile, include a username (it should be a single word with no spaces), add your official name and use a  profile picture that clearly shows your face (this is very important)</li>
-                          <li>Introduce yourself in the #introduction channel</li>
-                          <li>Read the welcome messages on #announcement channel and follow all instruction</li>
-                          <li>We understand that you are new to the ecosystem, hence we have provided you with handful of experienced mentors that will guide you throughout the journey. Feel free to ask them any question and clarifications.</li>
-                          <li>weet or post this on instagram to create awareness for others:</li>
-                        </ul>
-                        <p style="text-align: left;"> “I have just been accepted into the #I4GHNGScholarship and I’ll be embarking on a journey to learn how to code (or design) with @ingressive4Good and @thezuriteam”</p>
-
-                      
-                        <p style="text-align: left;">Note that this training involves a couple of activities, including assignments on growth and learning initiatives which we expect you to partake actively .</p>
-
-                        <p style="text-align: left;">Once again, Our team will be on hand to assist throughout the period of the program.</p>
- 
-                        <p style="text-align: left;">We look forward to seeing all that you achieve together over the next couple of months.</p>
-                        
                         
                         
                         <p style="text-align: left;">Regards,</p> 
                         
-                        <p style="text-align: left;">Zuri x I4G</p>
+                        <p style="text-align: left;">Zuri Team</p>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
                     </td>
