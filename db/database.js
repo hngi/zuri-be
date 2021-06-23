@@ -20,11 +20,7 @@ const connect = async () => {
   if (mongoose.connection.readyState === 0) {
     try {
       await mongoose.connect(
-        process.env.NODE_ENV === 'test'
-          ? global.__MONGO_URI__
-          : DOCKER_MONGO === 'true'
-            ? url
-            : config.dbconnection,
+       config.dbconnection,
         {
           useNewUrlParser: true,
           useCreateIndex: true,
@@ -32,8 +28,9 @@ const connect = async () => {
           useUnifiedTopology: true
         }
       ).then(() => {
+        // config.dbconnection
         console.log('successfully connected to mongodb atlas');
-        seedAdmin();
+        // seedAdmin();
       });
     } catch (err) {
       console.error('App starting error:', err.stack);

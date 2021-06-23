@@ -13,7 +13,7 @@ const internApplicationValidationRules = () => [
   body('email').isEmail().not().isEmpty(),
   body('track').isString().not().isEmpty(),
   body('age').isString().not().isEmpty(),
-  body('level').isString().not().isEmpty()
+  body('level').isString().not().isEmpty() 
 ];
 const createIntern = async (req, res) => {
   try {
