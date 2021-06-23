@@ -100,11 +100,12 @@ const zuriInternApplication = async (req, res, next) => {
       return responseHandler(res, 'An error occured in your inputs', 422, false, myarray);
     }
 
-    const checkIntern = await Intern.findOne({ email });
+    const checkIntern = await ZuriIntern.findOne({ email });
+
     if (checkIntern) {
       return responseHandler(res, 'Record already exist', 401, false);
     }
-    const intern = new Intern({
+    const intern = new ZuriIntern({
       name,
       age,
       gender,
