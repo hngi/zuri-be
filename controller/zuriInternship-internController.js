@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const ZuriIntern = require('../models/ZuriInternship-InternModel');
-
+const { message } = require('../utils/email/template/zuriInternshipWelcome');
 const { responseHandler } = require('../utils/responseHandler');
 
 // Zuri Get all interns
@@ -50,29 +50,9 @@ const zuriInternValidationRules = () => [
 // ZuriInternship Intern Application
 const zuriInternApplication = async (req, res, next) => {
 
-  // const errors = validationResult(req);
-
-  // if (!errors.isEmpty()) {
-  //   const err = errors.array();
-  //   const message = `${err[0].msg} in ${err[0].param}`;
-  //   return responseHandler(res, message, 400);
-  // }
-
-  // const { email } = req.body;
-  // try {
-  //   const intern = await ZuriIntern.findOne({ email });
-  //   if (intern) {
-  //     return responseHandler(res, 'Email address already used for application', 400, true);
-  //   }
-  //   let newIntern = new ZuriIntern(req.body);
-  //   newIntern = await newIntern.save();
-  //   return responseHandler(res, ' Application is successful', 201, true, {
-  //     data: newIntern
-  //   });
-  // } catch (err) {
-  //   return next(err);
-  // }
+ 
   try {
+
     const {
       name,
       phoneNumber,
@@ -87,20 +67,28 @@ const zuriInternApplication = async (req, res, next) => {
       location,
       country,
       referredFrom
+
     } = req.body;
 
-    const errors = validationResult(req);
+    console.log("GOt here")
+    const errors = validationResult(req.body);
+
     const err = errors.array();
     const myarray = [];
+
     err.forEach((er) => {
+
       const errMessage = `${er.msg} in ${er.param}`;
       myarray.push(errMessage);
+
     });
+
     if (myarray.length > 0) {
       return responseHandler(res, 'An error occured in your inputs', 422, false, myarray);
     }
 
     const checkIntern = await ZuriIntern.findOne({ email });
+    
 
     if (checkIntern) {
       return responseHandler(res, 'Record already exist', 401, false);
@@ -131,9 +119,11 @@ const zuriInternApplication = async (req, res, next) => {
     };
     await sendEmail(option);
     return responseHandler(res, 'Successfully Registered', 201, true, recordSave);
+
   } catch (error) {
+
     console.log(error);
-    return responseHandler(res, 'Inputs error', 500, false, error.message);
+    return responseHandler(res, 'Error', 500, false, error.message);
   }
 };
 

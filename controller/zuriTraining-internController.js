@@ -72,11 +72,19 @@ const createIntern = async (req, res) => {
       subject: 'Welcome to Zuri Training - Ready to get started?',
       message: await message()
     };
-    await sendEmail(option);
+    const sentEmail = await sendEmail(option);
+
+    if(!sendEmail){
+      return responseHandler(res, 'Registration successful, error sending confirmation email', 500, false, error.message);
+    }
+
     return responseHandler(res, 'Successfully Registered', 201, true, recordSave);
+
   } catch (error) {
+
     console.log(error);
     return responseHandler(res, 'Inputs error', 500, false, error.message);
+    
   }
 };
 
