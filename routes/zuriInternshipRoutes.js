@@ -6,7 +6,7 @@ const {
   filterInterns,
   zuriInternValidationRules,
   zuriInternApplication,
-  getAllInterns,
+  getAllInterns, 
   deactivateIntern
 } = require('../controller/zuriInternship-internController');
 

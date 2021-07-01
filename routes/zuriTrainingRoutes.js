@@ -1,4 +1,5 @@
 const express = require('express');
+
 const {
   createIntern,
   internApplicationValidationRules,
@@ -11,7 +12,7 @@ const {
   getSingleMentorApplication, deactivateMentor
 } = require('../controller/zuriTraining-mentorController');
 
-const {
+const { 
   findByNameIntern,
   filterInternTrainingData,
   findByNameMentor,

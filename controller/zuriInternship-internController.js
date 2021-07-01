@@ -2,6 +2,7 @@ const { body, validationResult } = require('express-validator');
 const ZuriIntern = require('../models/ZuriInternship-InternModel');
 const { message } = require('../utils/email/template/zuriInternshipWelcome');
 const { responseHandler } = require('../utils/responseHandler');
+const sendEmail = require('../utils/email/send-email');
 
 // Zuri Get all interns
 const getAllInterns = async (req, res) => {
@@ -48,7 +49,7 @@ const zuriInternValidationRules = () => [
 ];
 
 // ZuriInternship Intern Application
-const zuriInternApplication = async (req, res, next) => {
+const zuriInternApplication = async (req, res) => {
 
  
   try {
@@ -70,7 +71,7 @@ const zuriInternApplication = async (req, res, next) => {
 
     } = req.body;
 
-    console.log("GOt here")
+ 
     const errors = validationResult(req.body);
 
     const err = errors.array();
@@ -93,6 +94,7 @@ const zuriInternApplication = async (req, res, next) => {
     if (checkIntern) {
       return responseHandler(res, 'Record already exist', 401, false);
     }
+
     const intern = new ZuriIntern({
       name,
       age,
@@ -108,22 +110,33 @@ const zuriInternApplication = async (req, res, next) => {
       country,
       referredFrom
     });
+
     const recordSave = await intern.save();
+
     if (!recordSave) {
       return responseHandler(res, 'Unable to register application', 401, false);
     }
+
     const option = {
       email,
       subject: 'Welcome to Zuri Internship',
       message: await message()
     };
-    await sendEmail(option);
+    
+    const sentEmail = await sendEmail(option);
+
+
+    if(!sendEmail){
+      return responseHandler(res, 'Registration successful, error sending confirmation email', 500, false, error.message);
+    }
+
     return responseHandler(res, 'Successfully Registered', 201, true, recordSave);
 
   } catch (error) {
 
     console.log(error);
     return responseHandler(res, 'Error', 500, false, error.message);
+  
   }
 };
 
