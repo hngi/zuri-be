@@ -62,4 +62,4 @@ server.on('listening', () => {
   database.connect();
   console.log(log);
 });
-//server.listen(PORT);
+server.listen(PORT);
